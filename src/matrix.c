@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "matrix.h"
 
-
 // Function to create a matrix
 Matrix *createMatrix(int nRows, int nCols) {
     // Allocate memory for the matrix struct
@@ -17,7 +16,7 @@ Matrix *createMatrix(int nRows, int nCols) {
     matrix->nCols = nCols;
 
     // Allocate memory for rows
-    matrix->data = malloc(nRows * sizeof(double *));
+    matrix->data = malloc(nRows * sizeof(int *));
     if (matrix->data == NULL) {
         fprintf(stderr, "Error: Out of memory\n");
         free(matrix);
@@ -26,13 +25,20 @@ Matrix *createMatrix(int nRows, int nCols) {
 
     // Allocate memory for each row
     for (int i = 0; i < nRows; i++) {
-        matrix->data[i] = malloc(nCols * sizeof(double));
+        matrix->data[i] = malloc(nCols * sizeof(int));
         if (matrix->data[i] == NULL) {
             fprintf(stderr, "Error: Out of memory\n");
             for (int j = 0; j < i; j++) free(matrix->data[j]);
             free(matrix->data);
             free(matrix);
             exit(EXIT_FAILURE);
+        }
+    }
+
+    // Initialize all elements to 0
+    for (int i = 0; i < nRows; i++) {
+        for (int j = 0; j < nCols; j++) {
+            matrix->data[i][j] = 0;
         }
     }
 
@@ -49,7 +55,7 @@ void freeMatrix(Matrix *matrix) {
 }
 
 // Function to set an element in the matrix
-void setElement(Matrix *matrix, int row, int col, double value) {
+void setElement(Matrix *matrix, int row, int col, int value) {
     if (row >= matrix->nRows || col >= matrix->nCols || row < 0 || col < 0) {
         fprintf(stderr, "Error: Index out of bounds\n");
         return;
@@ -58,7 +64,7 @@ void setElement(Matrix *matrix, int row, int col, double value) {
 }
 
 // Function to get an element from the matrix
-double getElement(Matrix *matrix, int row, int col) {
+int getElement(Matrix *matrix, int row, int col) {
     if (row >= matrix->nRows || col >= matrix->nCols || row < 0 || col < 0) {
         fprintf(stderr, "Error: Index out of bounds\n");
         exit(EXIT_FAILURE); // Exit on invalid access
