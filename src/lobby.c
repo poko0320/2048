@@ -22,7 +22,7 @@ void printLevelValue(Matrix *matrix,int level){
     printf("|");
     int value;
     for(int i = 0; i < 4; i++){
-        value = getElement(matrix, level, 1);
+        value = getElement(matrix, level, i);
         int digit = countDigits(value);
         for(int j = 0;j< (4-digit); j++){
             printf(" ");
