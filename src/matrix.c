@@ -41,6 +41,17 @@ Matrix *createMatrix(int nRows, int nCols) {
             matrix->data[i][j] = 0;
         }
     }
+    matrix->score = malloc(sizeof(int));
+    if (!matrix->score) {
+        printf("Error: Memory allocation failed for score.\n");
+        for (int i = 0; i < nRows; i++) {
+            free(matrix->data[i]);
+        }
+        free(matrix->data);
+        free(matrix);
+        exit(1);
+    }
+    *(matrix->score) = 0;
 
     return matrix;
 }

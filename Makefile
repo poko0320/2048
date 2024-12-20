@@ -1,12 +1,36 @@
+# Compiler and Flags
 CC = gcc
-CFLAGS = -Wall -Wextra -Iinclude
-SRC = src/main.c src/game.c src/matrix.c 
-TARGET = 2048.exe
+CFLAGS = -Wall -Wextra -Iinclude -g
 
-all: $(TARGET)
+# Directories
+SRC_DIR = src
+INC_DIR = include
+TEST_DIR = testfile
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+# Source Files
+SRC_FILES = $(SRC_DIR)/end_screen.c $(SRC_DIR)/game.c $(SRC_DIR)/lobby.c $(SRC_DIR)/matrix.c $(SRC_DIR)/utils.c
 
+# Test Files
+TEST_FILES = $(TEST_DIR)/test_game.c $(TEST_DIR)/test_lobby.c $(TEST_DIR)/test_matrix.c $(TEST_DIR)/test_random.c
+
+# Executable Targets
+EXECUTABLES = test_game test_lobby test_matrix test_random
+
+# Build Rules
+all: $(EXECUTABLES)
+
+test_game: $(SRC_FILES) $(TEST_DIR)/test_game.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+test_lobby: $(SRC_FILES) $(TEST_DIR)/test_lobby.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+test_matrix: $(SRC_FILES) $(TEST_DIR)/test_matrix.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+test_random: $(SRC_FILES) $(TEST_DIR)/test_random.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+# Clean Rule
 clean:
-	rm -f $(TARGET)
+	rm -f $(EXECUTABLES) *.o

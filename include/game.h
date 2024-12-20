@@ -4,6 +4,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef enum {
+    LEFT, 
+    RIGHT,
+    UP, 
+    DOWN
+} Direction;
+
 Matrix *randomGenerate(Matrix *matrix);
+void moveAction(Matrix *matrix, Direction direction);
 
 #endif 
