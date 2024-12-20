@@ -1,0 +1,12 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -Iinclude
+SRC = testfile/test_game.c src/game.c src/matrix.c  src/lobby.c 
+TARGET = test.exe
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+
+clean:
+	rm -f $(TARGET)
