@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
-SRC = src/main.c src/lobby.c src/game.c src/end_screen.c src/utils.c
-TARGET = 2048
+SRC = src/main.c src/game.c src/matrix.c 
+TARGET = 2048.exe
 
 all: $(TARGET)
 
