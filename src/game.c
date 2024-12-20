@@ -30,3 +30,8 @@ Matrix *randomGenerate(Matrix *matrix){
     setElement(matrix, randX, randY, randValue);
     return matrix;
 }
+
+Matrix *moveAction(Matrix *matrix, char direction){
+
+    return matrix;
+}
