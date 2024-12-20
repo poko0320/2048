@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include "matrix.h"
+
 
 int main() {
-    printf("Welcome to 2048!\n");
+
     return 0;
 }
