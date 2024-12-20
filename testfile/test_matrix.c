@@ -3,7 +3,8 @@
 
 
 int main() {
-    printf("Welcome to 2048!\n");
     Matrix *game = createMatrix(4, 4);
+    int x = getElement(game, 1, 1);
+    printf("%d",x);
     return 0;
 }
