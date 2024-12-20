@@ -12,6 +12,7 @@ void slide_row_left(int row[4]);
 void combine_row_left(int row[4], int *score);
 void reverse_row(int row[4]);
 
+
 int randomNumber(int number){
     srand(time(NULL));
     return rand()%number;
@@ -130,7 +131,9 @@ void moveAction(Matrix *matrix, Direction direction){
     }
 }
 
-
+void incScore(int *score, int newscore) {
+    *score += newscore;
+}
 
 
 
@@ -167,7 +170,7 @@ void combine_row_left(int row[4], int *score) {
     for (int i = 0; i < 3; i++) {
         if (row[i] != 0 && row[i] == row[i + 1]) {
             row[i] *= 2;
-            *score += row[i]; // Update the score
+            incScore(score, row[i]); // Update the score
             row[i + 1] = 0;
         }
     }
