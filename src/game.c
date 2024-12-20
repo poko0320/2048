@@ -9,7 +9,7 @@ void extract_column(Matrix *matrix, int col, int column[4]);
 void place_column(Matrix *matrix, int col, int column[4]);
 void place_column(Matrix *matrix, int col, int column[4]);
 void slide_row_left(int row[4]);
-void combine_row_left(int row[4], int *score);
+void combine_row_left(Matrix *matrix, int row[4]);
 void reverse_row(int row[4]);
 
 
@@ -55,7 +55,7 @@ void moveAction(Matrix *matrix, Direction direction){
 
                 // Slide and combine
                 slide_row_left(row);
-                combine_row_left(row, matrix->score);
+                combine_row_left(matrix, row);
                 slide_row_left(row);
 
                 // Place the updated row back into the matrix
@@ -76,7 +76,7 @@ void moveAction(Matrix *matrix, Direction direction){
                 // Reverse, slide, combine, and reverse back
                 reverse_row(row);
                 slide_row_left(row);
-                combine_row_left(row, matrix->score);
+                combine_row_left(matrix, row);
                 slide_row_left(row);
                 reverse_row(row);
 
@@ -97,7 +97,7 @@ void moveAction(Matrix *matrix, Direction direction){
 
                 // Slide and combine
                 slide_row_left(column);
-                combine_row_left(column, matrix->score);
+                combine_row_left(matrix, column);
                 slide_row_left(column);
 
                 // Place the updated column back into the matrix
@@ -118,7 +118,7 @@ void moveAction(Matrix *matrix, Direction direction){
                 // Reverse, slide, combine, and reverse back
                 reverse_row(column);
                 slide_row_left(column);
-                combine_row_left(column, matrix->score);
+                combine_row_left(matrix, column);
                 slide_row_left(column);
                 reverse_row(column);
 
@@ -166,11 +166,11 @@ void slide_row_left(int row[4]) {
     }
 }
 
-void combine_row_left(int row[4], int *score) {
+void combine_row_left(Matrix *matrix, int row[4]) {
     for (int i = 0; i < 3; i++) {
         if (row[i] != 0 && row[i] == row[i + 1]) {
             row[i] *= 2;
-            incScore(score, row[i]); // Update the score
+            setScore(matrix, row[i]);
             row[i + 1] = 0;
         }
     }

@@ -41,17 +41,7 @@ Matrix *createMatrix(int nRows, int nCols) {
             matrix->data[i][j] = 0;
         }
     }
-    matrix->score = malloc(sizeof(int));
-    if (!matrix->score) {
-        printf("Error: Memory allocation failed for score.\n");
-        for (int i = 0; i < nRows; i++) {
-            free(matrix->data[i]);
-        }
-        free(matrix->data);
-        free(matrix);
-        exit(1);
-    }
-    *(matrix->score) = 0;
+    matrix->score = 0;
 
     return matrix;
 }
@@ -81,4 +71,14 @@ int getElement(Matrix *matrix, int row, int col) {
         exit(EXIT_FAILURE); // Exit on invalid access
     }
     return matrix->data[row][col];
+}
+
+// Function to set the score
+void setScore(Matrix *matrix, int value){
+    matrix->score = matrix->score + value;
+}
+
+// Function to get the score
+int getScore(Matrix *matrix){
+    return matrix->score;
 }
