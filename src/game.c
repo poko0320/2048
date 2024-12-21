@@ -14,6 +14,10 @@ void slide_row_left(int row[4]);
 void combine_row_left(Matrix *matrix, int row[4]);
 void reverse_row(int row[4]);
 
+//=================================================
+//                game feature
+//=================================================
+
 
 int randomNumber(int number){
     srand(time(NULL));
@@ -43,11 +47,61 @@ Matrix *randomGenerate(Matrix *matrix){
     return matrix;
 }
 
+bool Is2048(Matrix *matrix){
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j  < 4; j++){
+            if(getElement(matrix, i, j) == 2048){
+                return true;
+            }
+           
+        }
+    }
+    return false;
+}
+bool CheckSameMatrix(Matrix *m1, Matrix *m2){
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j  < 4; j++){
+            if(getElement(m1, i, j) != getElement(m2, i, j)){
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool IsMoveable(Matrix *matrix){
+    for(int i = 0; i < 4; i++){
+        Matrix *tmp = cloneMatrix(matrix);
+        switch (i) {
+            case 0:
+                moveAction(tmp, UP);
+                break;
+            case 1:
+                moveAction(tmp, DOWN); 
+                break;   
+            case 2:
+                moveAction(tmp, RIGHT);
+                break;
+            case 3:
+                moveAction(tmp, LEFT);  
+                break;
+        }
+        if (!CheckSameMatrix(tmp, matrix)) {
+            freeMatrix(tmp); // Free the temporary matrix before returning
+            return true; // Move is possible
+        }
+
+        // Free the temporary matrix
+        freeMatrix(tmp);
+    }
+    return false;
+}
+
 // ************* use this function to move ************
 // r is reverse
 void input(Matrix *matrix){
     char action;
-    scanf("Input: ", &action);
+    scanf("Input: %c", &action);
     printf("\n");
     switch (action) {
         case 'w':
@@ -166,17 +220,6 @@ void incScore(int *score, int newscore) {
     *score += newscore;
 }
 
-bool Is2048(Matrix *matrix){
-    for(int i = 0; i < 4; i++){
-        for(int j = 0; j  < 4; j++){
-            if(getElement(matrix, i, j) == 2048){
-                return true;
-            }
-           
-        }
-    }
-    return false;
-}
 
 
 // ___________________helper functions______________________

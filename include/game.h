@@ -16,4 +16,5 @@ Matrix *randomGenerate(Matrix *matrix);
 void moveAction(Matrix *matrix, Direction direction);
 void input(Matrix *matrix);
 bool Is2048(Matrix *matrix);
+bool IsMoveable(Matrix *matrix);
 #endif 
