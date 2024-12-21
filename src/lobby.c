@@ -40,3 +40,8 @@ void printMap(Matrix *matrix) {
     }
 }
 
+void printOpening(void){
+    printf("2048 \n");
+    printf("Game introduce: w for UP, a for LEFT, s for DOWN, d for RIGHT, r for reverse\n");
+    printf("Target to get 2048\n");
+}

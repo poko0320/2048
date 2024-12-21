@@ -7,5 +7,6 @@
 void printRowLine();
 void printLevelValue(Matrix *matrix,int level);
 void printMap(Matrix *matrix);
+void printOpening(void);
 
 #endif 
