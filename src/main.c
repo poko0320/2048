@@ -16,6 +16,7 @@ int main() {
         printMap(game);
         input(game);
     }
+    freeMatrix(game);
     printf("END");
     return 0;
 }
