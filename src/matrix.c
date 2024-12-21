@@ -41,7 +41,9 @@ Matrix *createMatrix(int nRows, int nCols) {
             matrix->data[i][j] = 0;
         }
     }
+    matrix->prev_data = matrix->data;
     matrix->score = 0;
+    matrix->prev_score = matrix->score;
 
     return matrix;
 }
@@ -51,7 +53,9 @@ void freeMatrix(Matrix *matrix) {
     for (int i = 0; i < matrix->nRows; i++) {
         free(matrix->data[i]); // Free each row
     }
-    free(matrix->data); // Free row pointers
+    for (int i = 0; i < matrix->nRows; i++) {
+        free(matrix->prev_data[i]); // Free each row
+    }
     free(matrix);       // Free the matrix struct
 }
 
