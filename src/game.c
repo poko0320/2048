@@ -44,6 +44,8 @@ Matrix *randomGenerate(Matrix *matrix){
 // ************* use this function to move ************
 // r is reverse
 void input(Matrix *matrix, char action){
+    printf("Input: ");
+    printf("\n");
     switch (action) {
         case 'w':
             moveAction(matrix, UP);
