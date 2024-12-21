@@ -9,12 +9,19 @@ int main() {
     Matrix *game = createMatrix(4, 4);
     randomGenerate(game);
     printMap(game);
-    input(game);
-    
+    char action;
     while((!Is2048(game)) && IsMoveable(game)){
-        randomGenerate(game);
+        if(action == 'q'){
+            break;
+        }
+        printf("Input (w/a/s/d/r/q): ");
+        scanf(" %c", &action);
+        printf("\n");
+        input(game, action);
         printMap(game);
-        input(game);
+        if(action != 'r'){
+            randomGenerate(game);
+        }
     }
     freeMatrix(game);
     printf("END");

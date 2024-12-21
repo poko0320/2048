@@ -3,45 +3,78 @@
 #include "matrix.h"
 
 // Function to create a matrix
-Matrix *createMatrix(int nRows, int nCols) {
-    // Allocate memory for the matrix struct
-    Matrix *matrix = malloc(sizeof(Matrix));
-    if (matrix == NULL) {
-        fprintf(stderr, "Error: Out of memory\n");
-        exit(EXIT_FAILURE);
+Matrix* createMatrix(int nRows, int nCols) {
+    // Allocate memory for the Matrix structure
+    Matrix* matrix = (Matrix*)malloc(sizeof(Matrix));
+    if (!matrix) {
+        fprintf(stderr, "Memory allocation failed for Matrix struct\n");
+        return NULL;
     }
 
-    // Store dimensions
+    // Initialize the nRows and nCols
     matrix->nRows = nRows;
     matrix->nCols = nCols;
 
-    // Allocate memory for rows
-    matrix->data = malloc(nRows * sizeof(int *));
-    if (matrix->data == NULL) {
-        fprintf(stderr, "Error: Out of memory\n");
+    // Allocate memory for the 2D array 'data'
+    matrix->data = (int**)malloc(nRows * sizeof(int*));
+    if (!matrix->data) {
+        fprintf(stderr, "Memory allocation failed for data\n");
         free(matrix);
-        exit(EXIT_FAILURE);
+        return NULL;
     }
 
-    // Allocate memory for each row
     for (int i = 0; i < nRows; i++) {
-        matrix->data[i] = malloc(nCols * sizeof(int));
-        if (matrix->data[i] == NULL) {
-            fprintf(stderr, "Error: Out of memory\n");
-            for (int j = 0; j < i; j++) free(matrix->data[j]);
+        matrix->data[i] = (int*)malloc(nCols * sizeof(int));
+        if (!matrix->data[i]) {
+            fprintf(stderr, "Memory allocation failed for data[%d]\n", i);
+            for (int j = 0; j < i; j++) {
+                free(matrix->data[j]);
+            }
             free(matrix->data);
             free(matrix);
-            exit(EXIT_FAILURE);
+            return NULL;
         }
     }
 
-    // Initialize all elements to 0
+    // Allocate memory for the 2D array 'prev_data'
+    matrix->prev_data = (int**)malloc(nRows * sizeof(int*));
+    if (!matrix->prev_data) {
+        fprintf(stderr, "Memory allocation failed for prev_data\n");
+        for (int i = 0; i < nRows; i++) {
+            free(matrix->data[i]);
+        }
+        free(matrix->data);
+        free(matrix);
+        return NULL;
+    }
+
+    for (int i = 0; i < nRows; i++) {
+        matrix->prev_data[i] = (int*)malloc(nCols * sizeof(int));
+        if (!matrix->prev_data[i]) {
+            fprintf(stderr, "Memory allocation failed for prev_data[%d]\n", i);
+            for (int j = 0; j < i; j++) {
+                free(matrix->prev_data[j]);
+            }
+            free(matrix->prev_data);
+            for (int j = 0; j < nRows; j++) {
+                free(matrix->data[j]);
+            }
+            free(matrix->data);
+            free(matrix);
+            return NULL;
+        }
+    }
+
+    // Initialize score
+    matrix->score = 0;
+
+    // Optionally initialize the arrays to zero
     for (int i = 0; i < nRows; i++) {
         for (int j = 0; j < nCols; j++) {
             matrix->data[i][j] = 0;
+            matrix->prev_data[i][j] = 0;
         }
     }
-    matrix->score = 0;
 
     return matrix;
 }
@@ -52,6 +85,7 @@ void freeMatrix(Matrix *matrix) {
         free(matrix->data[i]); // Free each row
     }
     free(matrix->data); // Free row pointers
+    free(matrix->prev_data);
     free(matrix);       // Free the matrix struct
 }
 
@@ -92,4 +126,31 @@ Matrix *cloneMatrix(Matrix *matrix) {
         }
     }
     return newMatrix;
+}
+
+// Function to clone data to prev_data
+void cloneDataToPrev(Matrix* matrix) {
+    if (!matrix || !matrix->data || !matrix->prev_data) {
+        fprintf(stderr, "Invalid Matrix or uninitialized arrays\n");
+        return;
+    }
+
+    for (int i = 0; i < matrix->nRows; i++) {
+        for (int j = 0; j < matrix->nCols; j++) {
+            matrix->prev_data[i][j] = matrix->data[i][j];
+        }
+    }
+}
+
+void clonePrevToData(Matrix* matrix) {
+    if (!matrix || !matrix->data || !matrix->prev_data) {
+        fprintf(stderr, "Invalid Matrix or uninitialized arrays\n");
+        return;
+    }
+
+    for (int i = 0; i < matrix->nRows; i++) {
+        for (int j = 0; j < matrix->nCols; j++) {
+            matrix->data[i][j] = matrix->prev_data[i][j];
+        }
+    }
 }

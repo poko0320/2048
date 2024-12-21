@@ -14,7 +14,7 @@ typedef enum {
 
 void randomGenerate(Matrix *matrix);
 void moveAction(Matrix *matrix, Direction direction);
-void input(Matrix *matrix);
+void input(Matrix *matrix, char action);
 bool Is2048(Matrix *matrix);
 bool IsMoveable(Matrix *matrix);
 #endif 

@@ -98,26 +98,26 @@ bool IsMoveable(Matrix *matrix){
 
 // ************* use this function to move ************
 // r is reverse
-void input(Matrix *matrix){
-    char action;
-    printf("Input (w/a/s/d/r): ");
-    scanf(" %c", &action);  // Use " %c" to skip whitespace
-    printf("\n");
+void input(Matrix *matrix, char action){
     switch (action) {
         case 'w':
+            cloneDataToPrev(matrix);
             moveAction(matrix, UP);
             break;
         case 'a':
+            cloneDataToPrev(matrix);
             moveAction(matrix, LEFT);
             break;
         case 's':
+            cloneDataToPrev(matrix);
             moveAction(matrix, DOWN);
             break;
         case 'd':
+            cloneDataToPrev(matrix);
             moveAction(matrix, RIGHT);
             break;
         case 'r':
-
+            clonePrevToData(matrix);
             break;
     }
 }

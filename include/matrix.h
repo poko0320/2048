@@ -9,6 +9,7 @@ typedef struct {
     int nRows;
     int nCols;
     int **data; // Pointer-to-pointer for 2D array
+    int **prev_data;
     int score;
 } Matrix;
 
@@ -20,5 +21,7 @@ int getElement(Matrix *matrix, int row, int col);
 void setScore(Matrix *matrix, int value);
 int getScore(Matrix *matrix);
 Matrix *cloneMatrix(Matrix *matrix);
+void cloneDataToPrev(Matrix* matrix);
+void clonePrevToData(Matrix* matrix);
 
 #endif 
