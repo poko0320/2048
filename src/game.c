@@ -100,7 +100,8 @@ bool IsMoveable(Matrix *matrix){
 // r is reverse
 void input(Matrix *matrix){
     char action;
-    scanf("Input: %c", &action);
+    printf("Input (w/a/s/d/r): ");
+    scanf(" %c", &action);  // Use " %c" to skip whitespace
     printf("\n");
     switch (action) {
         case 'w':
