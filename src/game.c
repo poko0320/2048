@@ -5,6 +5,8 @@
 #include "game.h"
 #include <ctype.h>
 
+
+
 void extract_column(Matrix *matrix, int col, int column[4]);
 void place_column(Matrix *matrix, int col, int column[4]);
 void place_column(Matrix *matrix, int col, int column[4]);
@@ -43,8 +45,9 @@ Matrix *randomGenerate(Matrix *matrix){
 
 // ************* use this function to move ************
 // r is reverse
-void input(Matrix *matrix, char action){
-    printf("Input: ");
+void input(Matrix *matrix){
+    char action;
+    scanf("Input: ", &action);
     printf("\n");
     switch (action) {
         case 'w':
@@ -163,7 +166,17 @@ void incScore(int *score, int newscore) {
     *score += newscore;
 }
 
-
+bool Is2048(Matrix *matrix){
+    for(int i = 0; i < 4; i++){
+        for(int j = 0; j  < 4; j++){
+            if(getElement(matrix, i, j) == 2048){
+                return true;
+            }
+           
+        }
+    }
+    return false;
+}
 
 
 // ___________________helper functions______________________

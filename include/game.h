@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef enum {
     LEFT, 
@@ -13,6 +14,6 @@ typedef enum {
 
 Matrix *randomGenerate(Matrix *matrix);
 void moveAction(Matrix *matrix, Direction direction);
-void input(Matrix *matrix, char action);
-
+void input(Matrix *matrix);
+bool Is2048(Matrix *matrix);
 #endif 
