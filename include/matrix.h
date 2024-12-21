@@ -19,6 +19,6 @@ void setElement(Matrix *matrix, int row, int col, int value);
 int getElement(Matrix *matrix, int row, int col);
 void setScore(Matrix *matrix, int value);
 int getScore(Matrix *matrix);
-
+Matrix *cloneMatrix(Matrix *matrix);
 
 #endif 

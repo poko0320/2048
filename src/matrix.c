@@ -82,3 +82,14 @@ void setScore(Matrix *matrix, int value){
 int getScore(Matrix *matrix){
     return matrix->score;
 }
+
+// clone matrix
+Matrix *cloneMatrix(Matrix *matrix) {
+    Matrix *newMatrix = createMatrix(4,4); // Create a new matrix
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            setElement(newMatrix, i, j, getElement(matrix, i, j)); // Copy elements
+        }
+    }
+    return newMatrix;
+}
