@@ -42,6 +42,32 @@ Matrix *randomGenerate(Matrix *matrix){
 }
 
 // ************* use this function to move ************
+// r is reverse
+void input(Matrix *matrix, char action){
+    switch (action) {
+        case 'w':
+            moveAction(matrix, UP);
+            break;
+        case 'a':
+            moveAction(matrix, LEFT);
+            break;
+        case 's':
+            moveAction(matrix, DOWN);
+            break;
+        case 'd':
+            moveAction(matrix, RIGHT);
+            break;
+        case 'r':
+
+            break;
+    }
+}
+
+
+
+
+
+
 void moveAction(Matrix *matrix, Direction direction){
     // Handle movement based on the direction
     switch (direction) {
