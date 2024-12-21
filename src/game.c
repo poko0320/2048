@@ -25,7 +25,7 @@ int randomNumber(int number){
 }
 
 
-Matrix *randomGenerate(Matrix *matrix){
+void *randomGenerate(Matrix *matrix){
     int randX = randomNumber(4);
     int randY = randomNumber(4);
     while(getElement(matrix, randX, randY)!= 0){
@@ -44,7 +44,6 @@ Matrix *randomGenerate(Matrix *matrix){
         randValue = 2;
     }
     setElement(matrix, randX, randY, randValue);
-    return matrix;
 }
 
 bool Is2048(Matrix *matrix){
