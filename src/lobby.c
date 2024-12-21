@@ -1,5 +1,11 @@
 #include <stdio.h>
 #include "matrix.h"
+void gameFrameLine(){
+    for(int i = 0; i < 50; i++){
+        printf("=");
+    }
+    printf("\n");
+}
 
 //find the digit
 int countDigits(int number) {
@@ -45,4 +51,9 @@ void printOpening(void){
     printf("Game introduce: w for UP, a for LEFT, s for DOWN, d for RIGHT, r for reverse\n");
     printf("q for kill game\n");
     printf("Target to get 2048\n");
+}
+
+void printEND(Matrix *matrix){
+    printf("END GAME \n");
+    printf("SCORE: %d", getScore(matrix));
 }

@@ -117,6 +117,7 @@ void input(Matrix *matrix, char action){
             moveAction(matrix, RIGHT);
             break;
         case 'r':
+            setScore(matrix, getPrevScore(matrix));
             clonePrevToData(matrix);
             break;
     }
@@ -254,6 +255,7 @@ void combine_row_left(Matrix *matrix, int row[4]) {
     for (int i = 0; i < 3; i++) {
         if (row[i] != 0 && row[i] == row[i + 1]) {
             row[i] *= 2;
+            setPrevScore(matrix, getScore(matrix));
             setScore(matrix, row[i]);
             row[i + 1] = 0;
         }

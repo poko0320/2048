@@ -8,5 +8,7 @@ void printRowLine();
 void printLevelValue(Matrix *matrix,int level);
 void printMap(Matrix *matrix);
 void printOpening(void);
+void printEND(Matrix *matrix);
+void gameFrameLine();
 
 #endif 

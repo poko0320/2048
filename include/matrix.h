@@ -11,6 +11,7 @@ typedef struct {
     int **data; // Pointer-to-pointer for 2D array
     int **prev_data;
     int score;
+    int prev_score;
 } Matrix;
 
 // Function declarations (prototypes)
@@ -20,6 +21,8 @@ void setElement(Matrix *matrix, int row, int col, int value);
 int getElement(Matrix *matrix, int row, int col);
 void setScore(Matrix *matrix, int value);
 int getScore(Matrix *matrix);
+void setPrevScore(Matrix *matrix, int value);
+int getPrevScore(Matrix *matrix);
 Matrix *cloneMatrix(Matrix *matrix);
 void cloneDataToPrev(Matrix* matrix);
 void clonePrevToData(Matrix* matrix);

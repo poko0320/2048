@@ -67,6 +67,8 @@ Matrix* createMatrix(int nRows, int nCols) {
 
     // Initialize score
     matrix->score = 0;
+    matrix->prev_score = 0;
+    
 
     // Optionally initialize the arrays to zero
     for (int i = 0; i < nRows; i++) {
@@ -117,6 +119,14 @@ int getScore(Matrix *matrix){
     return matrix->score;
 }
 
+void setPrevScore(Matrix *matrix, int value){
+    matrix->score = matrix->score + value;
+}
+
+// Function to get the score
+int getPrevScore(Matrix *matrix){
+    return matrix->score;
+}
 // clone matrix
 Matrix *cloneMatrix(Matrix *matrix) {
     Matrix *newMatrix = createMatrix(4,4); // Create a new matrix
