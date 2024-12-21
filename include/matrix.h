@@ -9,9 +9,7 @@ typedef struct {
     int nRows;
     int nCols;
     int **data; // Pointer-to-pointer for 2D array
-    int **prev_data;
     int score;
-    int prev_score;
 } Matrix;
 
 // Function declarations (prototypes)
