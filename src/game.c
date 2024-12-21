@@ -25,7 +25,7 @@ int randomNumber(int number){
 }
 
 
-void *randomGenerate(Matrix *matrix){
+void randomGenerate(Matrix *matrix){
     int randX = randomNumber(4);
     int randY = randomNumber(4);
     while(getElement(matrix, randX, randY)!= 0){
