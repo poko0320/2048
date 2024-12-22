@@ -19,6 +19,7 @@ int main() {
         printf("\n");
         input(game, action);
         printMap(game);
+        printf("score: %d\n", game->score);
         if(action != 'r'){
             randomGenerate(game);
         }

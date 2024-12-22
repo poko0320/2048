@@ -14,7 +14,7 @@ SRC_FILES = $(SRC_DIR)/end_screen.c $(SRC_DIR)/game.c $(SRC_DIR)/lobby.c $(SRC_D
 TEST_FILES = $(TEST_DIR)/test_game.c $(TEST_DIR)/test_lobby.c $(TEST_DIR)/test_matrix.c $(TEST_DIR)/test_random.c
 
 # Executable Targets
-EXECUTABLES = test_game test_lobby test_matrix test_random
+EXECUTABLES = test_game test_lobby test_matrix test_random main
 
 # Build Rules
 all: $(EXECUTABLES)
@@ -29,6 +29,9 @@ test_matrix: $(SRC_FILES) $(TEST_DIR)/test_matrix.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 test_random: $(SRC_FILES) $(TEST_DIR)/test_random.c
+	$(CC) $(CFLAGS) -o $@ $^
+
+main: $(SRC_FILES) $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) -o $@ $^
 
 # Clean Rule

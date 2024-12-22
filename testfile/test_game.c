@@ -9,6 +9,6 @@ int main() {
     setElement(game, 0, 1, 2);
     moveAction(game, LEFT);
     printMap(game);
-    printf("%d\n", *game->score);
+    printf("%d\n", game->score);
     return 0;
 }

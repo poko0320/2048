@@ -120,13 +120,14 @@ int getScore(Matrix *matrix){
 }
 
 void setPrevScore(Matrix *matrix, int value){
-    matrix->score = matrix->score + value;
+    matrix->prev_score = value;
 }
 
 // Function to get the score
 int getPrevScore(Matrix *matrix){
-    return matrix->score;
+    return matrix->prev_score;
 }
+
 // clone matrix
 Matrix *cloneMatrix(Matrix *matrix) {
     Matrix *newMatrix = createMatrix(4,4); // Create a new matrix
@@ -163,4 +164,15 @@ void clonePrevToData(Matrix* matrix) {
             matrix->data[i][j] = matrix->prev_data[i][j];
         }
     }
+}
+
+int areMatricesEqual(Matrix *matrix) {
+    for (int i = 0; i < matrix->nRows; i++) {
+        for (int j = 0; j < matrix->nCols; j++) {
+            if (matrix->data[i][j] != matrix->prev_data[i][j]) {
+                return 0; // Not equal
+            }
+        }
+    }
+    return 1; // Equal
 }

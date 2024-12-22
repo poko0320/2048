@@ -12,7 +12,7 @@ typedef enum {
     DOWN
 } Direction;
 
-void randomGenerate(Matrix *matrix);
+Matrix *randomGenerate(Matrix *matrix);
 void moveAction(Matrix *matrix, Direction direction);
 void input(Matrix *matrix, char action);
 bool Is2048(Matrix *matrix);

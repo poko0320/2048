@@ -26,5 +26,6 @@ int getPrevScore(Matrix *matrix);
 Matrix *cloneMatrix(Matrix *matrix);
 void cloneDataToPrev(Matrix* matrix);
 void clonePrevToData(Matrix* matrix);
+int areMatricesEqual(Matrix *matrix);
 
 #endif 

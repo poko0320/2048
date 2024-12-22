@@ -25,7 +25,7 @@ int randomNumber(int number){
 }
 
 
-void randomGenerate(Matrix *matrix){
+Matrix *randomGenerate(Matrix *matrix){
     int randX = randomNumber(4);
     int randY = randomNumber(4);
     while(getElement(matrix, randX, randY)!= 0){
@@ -44,6 +44,8 @@ void randomGenerate(Matrix *matrix){
         randValue = 2;
     }
     setElement(matrix, randX, randY, randValue);
+
+    return matrix;
 }
 
 bool Is2048(Matrix *matrix){
@@ -117,7 +119,11 @@ void input(Matrix *matrix, char action){
             moveAction(matrix, RIGHT);
             break;
         case 'r':
-            setScore(matrix, getPrevScore(matrix));
+            if (getScore(matrix) < getPrevScore(matrix) || areMatricesEqual(matrix)) {
+                printf("You have already pressed undo\n");
+                break;
+            }
+            matrix->score = getPrevScore(matrix);
             clonePrevToData(matrix);
             break;
     }
